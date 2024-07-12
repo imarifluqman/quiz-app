@@ -1,8 +1,9 @@
 "use client";
 import Image from "next/image";
 import logo from "../../../public/logo.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Loader from "./loader/Loader";
 export default function Registor() {
   let [reg, setReg] = useState({
     name: "",
@@ -10,9 +11,16 @@ export default function Registor() {
     rollNo: "",
   });
 
+  let [loading, setLoading] = useState(true);
+
   const router = useRouter();
 
-  localStorage.clear();
+  useEffect(() => {
+    if (localStorage.getItem("data") !== null) {
+      router.push("/course");
+    }
+    setLoading(false);
+  }, []);
 
   const validateEmail = (email) => {
     return String(email)
@@ -43,45 +51,51 @@ export default function Registor() {
       onSubmit={handleSubmit}
       className="flex justify-center items-center flex-col sm:w-full lg:w-full w-full h-[100vh] mx-auto p-4 rounded-lg  bg-slate-100  "
     >
-      <Image
-        className="w-auto h-auto"
-        src={logo}
-        // width={100}
-        // height={100}
-        priority={true}
-        alt="Governor Sindh Logo Image"
-      />
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <Image
+            className="w-auto h-auto"
+            src={logo}
+            // width={100}
+            // height={100}
+            priority={true}
+            alt="Governor Sindh Logo Image"
+          />
 
-      <h1 className="text-1xl sm:text-2xl lg:text-4xl text-green-600 my-4 	">
-        Welcome to the Governor Sindh (GIAIC) Quiz App
-      </h1>
-      <p className=" text-green-600 my-4">Please Register Yourself</p>
-      <input
-        className=" w-[70%] lg:w-[400px] sm:w-[400px] my-2 p-2 rounded drop-shadow-md focus:outline-green-800 active:outline-green-800"
-        type="text"
-        placeholder="Enter your Full Name"
-        onChange={(e) => setReg({ ...reg, name: e.target.value })}
-      />
-      <input
-        className="w-[70%]  lg:w-[400px] sm:w-[400px] my-2 p-2 rounded drop-shadow-md focus:outline-green-800 active:outline-green-800"
-        type="email"
-        name="email"
-        placeholder="Enter your Email"
-        onChange={(e) => setReg({ ...reg, email: e.target.value })}
-      />
-      <input
-        className=" w-[70%]  lg:w-[400px] sm:w-[400px] my-2 p-2 rounded  drop-shadow-md focus:outline-green-800 active:outline-green-800"
-        type="text"
-        placeholder="Enter your Roll Number"
-        name="rollNo"
-        onChange={(e) => setReg({ ...reg, rollNo: e.target.value })}
-      />
+          <h1 className="text-1xl sm:text-2xl lg:text-4xl text-green-600 my-4 	">
+            Welcome to the Governor Sindh (GIAIC) Quiz App
+          </h1>
+          <p className=" text-green-600 my-4">Please Register Yourself</p>
+          <input
+            className=" w-[70%] lg:w-[400px] sm:w-[400px] my-2 p-2 rounded drop-shadow-md focus:outline-green-800 active:outline-green-800"
+            type="text"
+            placeholder="Enter your Full Name"
+            onChange={(e) => setReg({ ...reg, name: e.target.value })}
+          />
+          <input
+            className="w-[70%]  lg:w-[400px] sm:w-[400px] my-2 p-2 rounded drop-shadow-md focus:outline-green-800 active:outline-green-800"
+            type="email"
+            name="email"
+            placeholder="Enter your Email"
+            onChange={(e) => setReg({ ...reg, email: e.target.value })}
+          />
+          <input
+            className=" w-[70%]  lg:w-[400px] sm:w-[400px] my-2 p-2 rounded  drop-shadow-md focus:outline-green-800 active:outline-green-800"
+            type="text"
+            placeholder="Enter your Roll Number"
+            name="rollNo"
+            onChange={(e) => setReg({ ...reg, rollNo: e.target.value })}
+          />
 
-      <input
-        className="bg-green-400  my-2 p-2 rounded text-white  drop-shadow-md cursor-pointer hover:bg-green-600 "
-        type="submit"
-        value="Register"
-      />
+          <input
+            className="bg-green-400  my-2 p-2 rounded text-white  drop-shadow-md cursor-pointer hover:bg-green-600 "
+            type="submit"
+            value="Register"
+          />
+        </>
+      )}
     </form>
   );
 }

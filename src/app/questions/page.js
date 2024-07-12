@@ -14,16 +14,22 @@ export default function Question() {
   let [loading, setLoading] = useState(true);
   const router = useRouter();
 
-  useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem("data")));
-
-    if (user === null) {
-      setLoading(true);
+  function fetchData(params) {
+    let data = JSON.parse(localStorage.getItem("data"));
+    if (data === null) {
       router.push("/");
+    } else if (data.course === undefined) {
+      router.push("/course");
     } else {
+      setUser(data);
       setLoading(false);
     }
+  }
+  useEffect(() => {
+    fetchData();
   }, []);
+
+  let { course } = user;
   const checkedQuestion = (e) => {
     if (e.target.value === quiz[course][num].correctAnswer) {
       setScore(score + 1);
@@ -32,8 +38,6 @@ export default function Question() {
 
     setNextBtn(true);
   };
-
-  let { course } = user;
 
   const nextQuestion = () => {
     if (num === quiz[course].length - 1) {
@@ -56,7 +60,7 @@ export default function Question() {
 
   return (
     <>
-      <Nav />
+      {!loading ? <Nav /> : null}
       <div className="flex justify-center items-center w-full h-[100vh]">
         {loading ? (
           <Loader />

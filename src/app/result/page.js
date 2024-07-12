@@ -14,12 +14,15 @@ export default function page(params) {
   let [data, setData] = useState({});
 
   useEffect(() => {
-    setData(JSON.parse(localStorage.getItem("data")));
-    if (data === null) {
+    let fetchData = JSON.parse(localStorage.getItem("data"));
+
+    if (fetchData === null) {
       router.push("/");
     } else {
       setLoading(false);
     }
+
+    setData(fetchData);
   }, []);
 
   const downloadPdf = () => {
