@@ -1,16 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { UseEffect, UseState } from "react";
+import { UseRouter } from "next/navigation";
 import quiz from "../components/quiz.json";
 export default function page(params) {
-  let [userData, setuserData] = useState({});
+  let [userData, setuserData] = UseState({});
 
-  useEffect(() => {
+  UseEffect(() => {
     setuserData(JSON.parse(localStorage.getItem("data")));
   }, []);
 
-  const router = useRouter();
+  const router = UseRouter();
 
   let keys = Object.keys(quiz);
 
