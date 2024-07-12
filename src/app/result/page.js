@@ -2,7 +2,7 @@
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import Image from "next/image";
-import Certificate from "../../../public/certificate.png";
+// import Certificate from "../../../public/certificate.png";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Loader from "../components/loader/Loader";
@@ -64,14 +64,14 @@ export default function page(params) {
         ) : (
           <>
             <div className="w-[70%] h-[100%] mx-auto">
-              <Image
+              {/* <Image
                 className=" relative  top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%] "
                 src={Certificate}
                 width={1200}
                 height={1200}
                 priority={true}
                 alt="Governor Sindh certificate Image"
-              />
+              /> */}
 
               <p className="absolute top-[150px] right-[350px]  text-[12px] z-1 text-black  ">
                 {data.rollNo}
