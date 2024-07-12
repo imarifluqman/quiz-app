@@ -1,0 +1,218 @@
+{
+  "html": [
+    {
+      "question": "What does HTML stand for?",
+      "options": [
+        "Hyper Text Markup Language",
+        "Hyperlinks and Text Markup Language",
+        "Home Tool Markup Language",
+        "Hyper Tool Markup Language"
+      ],
+      "correctAnswer": "Hyper Text Markup Language"
+    },
+    {
+      "question": "Which HTML element is used to define the title of a document?",
+      "options": ["<head>", "<meta>", "<title>", "<header>"],
+      "correctAnswer": "<title>"
+    },
+    {
+      "question": "Which HTML element is used to create a hyperlink?",
+      "options": ["<link>", "<a>", "<href>", "<anchor>"],
+      "correctAnswer": "<a>"
+    },
+    {
+      "question": "How can you make a numbered list in HTML?",
+      "options": ["<ul>", "<list>", "<ol>", "<dl>"],
+      "correctAnswer": "<ol>"
+    },
+    {
+      "question": "Which attribute is used to provide an alternative text for an image if the image cannot be displayed?",
+      "options": ["title", "src", "alt", "longdesc"],
+      "correctAnswer": "alt"
+    },
+    {
+      "question": "Which HTML element is used to define a table row?",
+      "options": ["<tr>", "<td>", "<table>", "<th>"],
+      "correctAnswer": "<tr>"
+    },
+    {
+      "question": "What is the correct HTML element for the largest heading?",
+      "options": ["<h6>", "<h1>", "<head>", "<header>"],
+      "correctAnswer": "<h1>"
+    },
+    {
+      "question": "Which HTML attribute specifies an inline CSS style for an element?",
+      "options": ["style", "class", "id", "css"],
+      "correctAnswer": "style"
+    },
+    {
+      "question": "What is the correct HTML element for inserting a line break?",
+      "options": ["<break>", "<br>", "<lb>", "<line>"],
+      "correctAnswer": "<br>"
+    },
+    {
+      "question": "Which HTML element is used to specify a footer for a document or section?",
+      "options": ["<bottom>", "<footer>", "<section>", "<foot>"],
+      "correctAnswer": "<footer>"
+    }
+  ],
+  "css": [
+    {
+      "question": "What does CSS stand for?",
+      "options": [
+        "Computer Style Sheets",
+        "Creative Style Sheets",
+        "Cascading Style Sheets",
+        "Colorful Style Sheets"
+      ],
+      "correctAnswer": "Cascading Style Sheets"
+    },
+    {
+      "question": "Which HTML attribute is used to define inline styles?",
+      "options": ["styles", "font", "class", "style"],
+      "correctAnswer": "style"
+    },
+    {
+      "question": "Which is the correct CSS syntax?",
+      "options": [
+        "{body:color=black;}",
+        "body {color: black;}",
+        "{body;color:black;}",
+        "body:color=black;"
+      ],
+      "correctAnswer": "body {color: black;}"
+    },
+    {
+      "question": "Which property is used to change the background color?",
+      "options": ["bgcolor", "background-color", "color", "bg-color"],
+      "correctAnswer": "background-color"
+    },
+    {
+      "question": "How do you add a background color for all <h1> elements?",
+      "options": [
+        "all.h1 {background-color: #FFFFFF;}",
+        "h1.all {background-color: #FFFFFF;}",
+        "h1 {background-color: #FFFFFF;}",
+        "h1 {bgcolor: #FFFFFF;}"
+      ],
+      "correctAnswer": "h1 {background-color: #FFFFFF;}"
+    },
+    {
+      "question": "Which CSS property controls the text size?",
+      "options": ["font-style", "text-size", "font-size", "text-style"],
+      "correctAnswer": "font-size"
+    },
+    {
+      "question": "How do you display hyperlinks without an underline?",
+      "options": [
+        "a {decoration: no-underline;}",
+        "a {text-decoration: no-underline;}",
+        "a {text-decoration: none;}",
+        "a {underline: none;}"
+      ],
+      "correctAnswer": "a {text-decoration: none;}"
+    },
+    {
+      "question": "How do you make each word in a text start with a capital letter?",
+      "options": [
+        "text-transform: capitalize;",
+        "text-style: capitalize;",
+        "transform: capitalize;",
+        "You can't do that with CSS"
+      ],
+      "correctAnswer": "text-transform: capitalize;"
+    },
+    {
+      "question": "Which property is used to change the font of an element?",
+      "options": ["font-style", "font-weight", "font-family", "font-variant"],
+      "correctAnswer": "font-family"
+    },
+    {
+      "question": "How do you make the text bold?",
+      "options": [
+        "font-weight: bold;",
+        "font-style: bold;",
+        "text-weight: bold;",
+        "text-style: bold;"
+      ],
+      "correctAnswer": "font-weight: bold;"
+    }
+  ],
+  "typescript": [
+    {
+      "question": "Which of the following is the correct way to declare a variable in JavaScript in ES6?",
+      "options": ["var x;", "variable x;", "let = x;", "x := 1;"],
+      "correctAnswer": "let = x;"
+    },
+    {
+      "question": "How do you create a function in JavaScript?",
+      "options": [
+        "function = myFunction() {}",
+        "function myFunction() {}",
+        "func myFunction() {}",
+        "myFunction() function {}"
+      ],
+      "correctAnswer": "function myFunction() {}"
+    },
+    {
+      "question": "Which of the following is used to define a constant in JavaScript?",
+      "options": ["constant", "let", "const", "var"],
+      "correctAnswer": "const"
+    },
+    {
+      "question": "How do you call a function named `myFunction`?",
+      "options": [
+        "call myFunction()",
+        "myFunction()",
+        "call function myFunction()",
+        "myFunction(call)"
+      ],
+      "correctAnswer": "myFunction()"
+    },
+    {
+      "question": "What is the correct syntax to write an `if` statement in JavaScript?",
+      "options": [
+        "if x > y then {}",
+        "if (x > y) {}",
+        "if x > y {}",
+        "if (x > y) then {}"
+      ],
+      "correctAnswer": "if (x > y) {}"
+    },
+    {
+      "question": "How can you add a single-line comment in JavaScript?",
+      "options": [
+        "<!-- This is a comment -->",
+        "// This is a comment",
+        "/* This is a comment */",
+        "** This is a comment **"
+      ],
+      "correctAnswer": "// This is a comment"
+    },
+    {
+      "question": "Which of the following is not a reserved word in JavaScript?",
+      "options": ["interface", "throws", "program", "short"],
+      "correctAnswer": "program"
+    },
+    {
+      "question": "What will `console.log(typeof NaN);` output?",
+      "options": ["null", "undefined", "number", "NaN"],
+      "correctAnswer": "number"
+    },
+    {
+      "question": "How do you find the minimum value of x and y using Math in JavaScript?",
+      "options": [
+        "Math.min(x, y)",
+        "Math.minimum(x, y)",
+        "Math.minval(x, y)",
+        "Math.minValue(x, y)"
+      ],
+      "correctAnswer": "Math.min(x, y)"
+    },
+    {
+      "question": "Which method can be used to combine two arrays in JavaScript?",
+      "options": ["append()", "merge()", "concat()", "join()"],
+      "correctAnswer": "concat()"
+    }
+  ]
+}
