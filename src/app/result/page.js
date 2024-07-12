@@ -2,7 +2,7 @@
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import Image from "next/image";
-import Certificate from "../../../public/certificate.png";
+import Certificate from "../../../public/Certificate.png";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Loader from "../components/loader/Loader";
