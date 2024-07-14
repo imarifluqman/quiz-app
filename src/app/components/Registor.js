@@ -64,7 +64,7 @@ export default function Registor() {
             alt="Governor Sindh Logo Image"
           />
 
-          <h1 className="text-2xl sm:text-2xl lg:text-4xl text-green-600 my-4 	">
+          <h1 className="text-1xl sm:text-2xl lg:text-4xl text-green-600 my-4 	">
             Welcome to the GIAIC Quiz App
           </h1>
           <p className=" text-green-600 my-4">Please Register Yourself</p>
