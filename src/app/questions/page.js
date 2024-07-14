@@ -59,16 +59,19 @@ export default function Question() {
   };
 
   return (
-    <>
+    <div className=" w-full h-[100vh]">
       {!loading ? <Nav /> : null}
-      <div className="flex justify-center items-center w-full h-[100vh]">
+      <div className="">
         {loading ? (
-          <Loader />
+          <div className="w-[100%] h-[100vh] flex justify-center items-center">
+            <Loader />
+          </div>
         ) : (
           <div className="sm:w-50 lg:w-1/2 w-[90%] h-[500px] mx-auto my-4 p-4 rounded-lg  bg-slate-100 relative">
-            <h1 className="text-2xl ">
-              Question# {num + 1} : {quiz[course][num].question}
-            </h1>
+            <p className="lg:text-2xl sm:text-2xl text-[20px] font-bold">
+              <span className="text-green-600"> Question# {num + 1}</span> :{" "}
+              {quiz[course][num].question}
+            </p>
 
             <div className="my-8">
               {quiz[course][num].options.map((option, index) => {
@@ -104,6 +107,6 @@ export default function Question() {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 }

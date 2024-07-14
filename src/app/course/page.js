@@ -10,22 +10,6 @@ export default function Page(params) {
 
   const router = useRouter();
 
-
-
-  
-  // useEffect(() => {
-  //   setUser(JSON.parse(localStorage.getItem("data")));
-
-  //   if (user === null) {
-  //     setLoading(true);
-  //     router.push("/");
-  //   } else {
-  //     setLoading(false);
-  //   }
-  // }, []);
-
-
-
   useEffect(() => {
     let data = JSON.parse(localStorage.getItem("data"));
     if (data === null) {

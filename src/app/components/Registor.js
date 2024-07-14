@@ -49,7 +49,7 @@ export default function Registor() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex justify-center items-center flex-col sm:w-full lg:w-full w-full h-[100vh] mx-auto p-4 rounded-lg  bg-slate-100  "
+      className="flex justify-start items-center flex-col sm:w-full lg:w-full w-full h-[100vh] mx-auto  pt-16 rounded-lg  bg-slate-100  "
     >
       {loading ? (
         <Loader />
@@ -64,25 +64,25 @@ export default function Registor() {
             alt="Governor Sindh Logo Image"
           />
 
-          <h1 className="text-1xl sm:text-2xl lg:text-4xl text-green-600 my-4 	">
-            Welcome to the Governor Sindh (GIAIC) Quiz App
+          <h1 className="text-2xl sm:text-2xl lg:text-4xl text-green-600 my-4 	">
+            Welcome to the GIAIC Quiz App
           </h1>
           <p className=" text-green-600 my-4">Please Register Yourself</p>
           <input
-            className=" w-[70%] lg:w-[400px] sm:w-[400px] my-2 p-2 rounded drop-shadow-md focus:outline-green-800 active:outline-green-800"
+            className=" w-[80%] lg:w-[400px] sm:w-[400px] my-2 p-2 rounded drop-shadow-md focus:outline-green-800 active:outline-green-800"
             type="text"
             placeholder="Enter your Full Name"
             onChange={(e) => setReg({ ...reg, name: e.target.value })}
           />
           <input
-            className="w-[70%]  lg:w-[400px] sm:w-[400px] my-2 p-2 rounded drop-shadow-md focus:outline-green-800 active:outline-green-800"
+            className="w-[80%]  lg:w-[400px] sm:w-[400px] my-2 p-2 rounded drop-shadow-md focus:outline-green-800 active:outline-green-800"
             type="email"
             name="email"
             placeholder="Enter your Email"
             onChange={(e) => setReg({ ...reg, email: e.target.value })}
           />
           <input
-            className=" w-[70%]  lg:w-[400px] sm:w-[400px] my-2 p-2 rounded  drop-shadow-md focus:outline-green-800 active:outline-green-800"
+            className=" w-[80%]  lg:w-[400px] sm:w-[400px] my-2 p-2 rounded  drop-shadow-md focus:outline-green-800 active:outline-green-800"
             type="text"
             placeholder="Enter your Roll Number"
             name="rollNo"
