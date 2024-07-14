@@ -20,7 +20,7 @@ export default function Registor() {
       router.push("/course");
     }
     setLoading(false);
-  }, []);
+  }, [router]);
 
   const validateEmail = (email) => {
     return String(email)

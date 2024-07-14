@@ -6,7 +6,7 @@ import Certificate from "../../../public/Certificate.png";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Loader from "../components/loader/Loader";
-export default function page(params) {
+export default function Page(params) {
   let [isLoading, setLoading] = useState(true);
   const router = useRouter();
   const pdfRef = useRef();
@@ -23,7 +23,7 @@ export default function page(params) {
     }
 
     setData(fetchData);
-  }, []);
+  }, [router]);
 
   const downloadPdf = () => {
     const input = pdfRef.current;

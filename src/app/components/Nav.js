@@ -1,8 +1,9 @@
 "use client";
-import { useState } from "react";
+
 import { useRouter } from "next/navigation";
 export default function Nav() {
   const router = useRouter();
+
   function logOut(params) {
     localStorage.clear();
     router.push("/");

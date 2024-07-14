@@ -27,7 +27,7 @@ export default function Question() {
   }
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [router]);
 
   let { course } = user;
   const checkedQuestion = (e) => {

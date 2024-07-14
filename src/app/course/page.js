@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import quiz from "../components/quiz.json";
 import Loader from "../components/loader/Loader";
-export default function page(params) {
+export default function Page(params) {
   let [userData, setuserData] = useState({});
   let [isLoading, setIsLoadin] = useState(true);
 
@@ -34,7 +34,7 @@ export default function page(params) {
       setIsLoadin(false);
     }
     setuserData(data);
-  }, []);
+  }, [router]);
 
   let keys = Object.keys(quiz);
 
