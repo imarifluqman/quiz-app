@@ -28,16 +28,19 @@ export default function Page(params) {
 
   const downloadPdf = () => {
     const input = pdfRef.current;
+    const pdf = new jsPDF("l", "mm", "a4", true);
+
     html2canvas(input).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
-
       // new jsPDF("l", "mm", "a4", true);
       // l stand for landscape, p for portrait
       // mm stand for millimeters, in for inches
       // a4 stand for A4 page size
-      const pdf = new jsPDF("l", "mm", "a4", true);
+
       const pdfWidth = pdf.internal.pageSize.getWidth();
       const pdfHeight = pdf.internal.pageSize.getHeight();
+
+      console.log(pdfWidth, pdfHeight);
       const imgWidth = canvas.width;
       const imgHeight = canvas.height;
       const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
@@ -54,7 +57,6 @@ export default function Page(params) {
       );
       pdf.text(data.rollNo, 230, 63);
       pdf.text(data.name.toUpperCase(), 146, 108);
-      // pdf.addFont("Poppins", "Poppins", "normal");
       pdf.text(data.course.toUpperCase(), 150, 128);
       pdf.text(data.score.toString() + "%", 220, 128);
       pdf.save(`GIAIC-${data.name}.pdf`);
@@ -72,18 +74,17 @@ export default function Page(params) {
         </div>
       ) : (
         <>
-          <div className="">
+          {/* <div className="">
             <p className="">Name : {data.name}</p>
             <p className="">Roll No : {data.rollNo}</p>
             <p className="">Course : {data.course}</p>
             <p className=" "> Your Score :{data.score}%</p>
-          </div>
+          </div> */}
           <Image
             ref={pdfRef}
-            className="h-auto w-auto "
             src={Certificate}
-            width={800}
-            height={800}
+            height={2480}
+            width={3508}
             priority={true}
             alt="Governor Sindh certificate Image"
           />
