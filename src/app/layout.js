@@ -6,6 +6,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "Quiz App",
   description: "Quiz App GIAIC-Quiz-App",
+  icons: {
+    icon: "../public/logo.png",
+  },
 };
 
 export default function RootLayout({ children }) {

@@ -11,7 +11,7 @@ export default function Nav() {
 
   return (
     <nav className="flex justify-between items-center w-full bg-blue-500 py-2 px-4">
-      <p className="text-white">GIAIC Quiz App</p>
+      <p className="text-white font-bold">GIAIC</p>
       <button
         className="text-blue-600 bg-white py-2 px-4 rounded font-bold"
         onClick={() => logOut()}
