@@ -49,8 +49,8 @@ export default function Page(params) {
           <Loader />
         </div>
       ) : (
-        <div className="w-[100%] h-[90vh] flex justify-center items-center">
-          <div className="w-[390px]  bg-slate-100 p-6 rounded-lg">
+        <div className="w-[100%] h-[90vh] flex justify-center mt-10">
+          <div className="w-[380px] h-[300px] bg-slate-100 p-6 rounded-lg">
             <p className="text-3xl text-center font-bold text-green-600">
               Congratulations😊
             </p>
