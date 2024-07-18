@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Loader from "../components/loader/Loader";
 import Nav from "../components/Nav";
-import { certificatBase64 } from "../components/base64";
+import certificatBase64 from "../components/base64";
 
 export default function Page(params) {
   let [isLoading, setLoading] = useState(true);

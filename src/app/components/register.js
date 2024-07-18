@@ -61,11 +61,11 @@ export default function Registor() {
             width={100}
             height={100}
             priority={true}
-            alt="Governor Sindh Logo Image"
+            alt="Infinity code Logo Image"
           />
 
           <h1 className="text-1xl sm:text-2xl lg:text-4xl text-green-600   drop-shadow-lg	">
-            Welcome to INFINITY CODE Quiz App
+            Welcome to the INFINITY CODE Quiz App
           </h1>
           <p className=" text-green-600 my-4">Please Register Yourself</p>
           <input

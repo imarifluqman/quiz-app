@@ -35,8 +35,8 @@ export default function Question() {
     if (e.target.value === quiz[course][num].correctAnswer) {
       setScore(score + 1);
     }
-
     setSelected(e);
+
     setNextBtn(true);
   };
 

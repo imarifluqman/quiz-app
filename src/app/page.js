@@ -1,4 +1,4 @@
-import Registor from "./components/Registor";
+import Registor from "./components/register";
 export default function Home() {
   return (
     <>
