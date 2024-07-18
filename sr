@@ -58,8 +58,8 @@ export default function Registor() {
           <Image
             className="w-auto h-auto"
             src={logo}
-            // width={100}
-            // height={100}
+            width={100}
+            height={100}
             priority={true}
             alt="Infinity code Logo Image"
           />
