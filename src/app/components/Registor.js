@@ -58,14 +58,14 @@ export default function Registor() {
           <Image
             className="w-auto h-auto"
             src={logo}
-            // width={100}
-            // height={100}
+            width={100}
+            height={100}
             priority={true}
             alt="Governor Sindh Logo Image"
           />
 
           <h1 className="text-1xl sm:text-2xl lg:text-4xl text-green-600   drop-shadow-lg	">
-            Welcome to the GIAIC Quiz App
+            Welcome to INFINITY CODE Quiz App
           </h1>
           <p className=" text-green-600 my-4">Please Register Yourself</p>
           <input

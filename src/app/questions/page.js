@@ -30,12 +30,13 @@ export default function Question() {
   }, [router]);
 
   let { course } = user;
+
   const checkedQuestion = (e) => {
     if (e.target.value === quiz[course][num].correctAnswer) {
       setScore(score + 1);
     }
-    setSelected(e);
 
+    setSelected(e);
     setNextBtn(true);
   };
 
@@ -79,11 +80,14 @@ export default function Question() {
                   <div className="my-2 flex items-center" key={index}>
                     <input
                       className="lg:w-4 sm:w-4 w-4 h-4 lg:h-4 sm:h-4"
-                      onClick={(e) => checkedQuestion(e)}
+                      onClick={(e) => {
+                        checkedQuestion(e);
+                      }}
                       type="radio"
                       value={option}
                       id={index}
                       name="option"
+                      disabled={nextBtn}
                     />
                     <label
                       className="hover:bg-slate-300 font-bold text-lg lg:w-[90%] sm:w-[90%]  block w-[90%] py-1 px-4 rounded cursor-pointer m-2"
@@ -98,8 +102,7 @@ export default function Question() {
 
             <button
               disabled={!nextBtn}
-              // style={{ background: nextBtn ? "rgb(59 130 246)" : "gray" }}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded absolute bottom-5 right-5"
+              className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded absolute bottom-5 right-5"
               onClick={() => nextQuestion()}
             >
               Next

@@ -1,6 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import logo from "../../../public/logo.png";
 export default function Nav() {
   const router = useRouter();
 
@@ -10,10 +12,17 @@ export default function Nav() {
   }
 
   return (
-    <nav className="flex justify-between items-center w-full bg-blue-500 py-2 px-4">
-      <p className="text-white font-bold">GIAIC</p>
+    <nav className="flex justify-between items-center w-full  py-2 px-4 shadow">
+      <Image
+        className="w-auto h-auto"
+        src={logo}
+        width={60}
+        height={50}
+        priority={true}
+        alt="Governor Sindh Logo Image"
+      />
       <button
-        className="text-blue-600 bg-white py-2 px-4 rounded font-bold"
+        className="text-white bg-green-600 py-2 px-4 rounded font-bold"
         onClick={() => logOut()}
       >
         LogOut

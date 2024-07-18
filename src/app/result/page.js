@@ -38,7 +38,7 @@ export default function Page(params) {
     const textWidth = pdf.getTextWidth(data.name);
     const xPosition = (pdfWidth - (textWidth + 20)) / 2;
     pdf.text(data.name.toUpperCase(), xPosition, 108);
-    pdf.save(`GIAIC-${data.name}.pdf`);
+    pdf.save(`INFINITI-${data.name}.pdf`);
   };
 
   return (
