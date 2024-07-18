@@ -4,11 +4,14 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Quiz App",
-  description: "Quiz App GIAIC-Quiz-App",
-  icons: {
-    icon: "../public/logo.png",
-  },
+  title: "INFINITY CODE",
+  description: "Quiz App INFINITY CODE-Quiz-App",
+  viewport: "width=device-width, initial-scale=1.0",
+  charset: "utf-8",
+  author: "INFINITY CODE",
+  keywords: "INFINITY CODE, Quiz App, Quiz, App, Infinity Code",
+  creator: "INFINITY CODE",
+  publisher: "INFINITY CODE",
 };
 
 export default function RootLayout({ children }) {
