@@ -21,6 +21,8 @@ export default function Registor() {
       onSubmit: (values, { resetForm }) => {
         resetForm();
         console.log(values);
+        localStorage.setItem("data", JSON.stringify(values));
+        router.push("/course");
       },
     });
 
