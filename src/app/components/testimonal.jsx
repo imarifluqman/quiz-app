@@ -3,7 +3,7 @@ import Next from "../../../public/icons/Nextjs.png";
 function Testimonal(params) {
   return (
     <div className="w-[100%] mt-4 p-4">
-      <p className="text-2xl border-b-2 lg:pb-4 mb-8">💕 Testimonals 👨‍⚖️</p>
+      <p className="text-1xl border-b-2 lg:pb-4 mb-8">💕 Testimonals 👨‍⚖️</p>
 
       <div className="lg:w-[400px] w-[90%] mx-auto mt-6">
         <div className="border rounded m-2 p-4 flex justify-center items-center  bg-slate-100">

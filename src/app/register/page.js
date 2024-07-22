@@ -1,101 +1,125 @@
 "use client";
-import Image from "next/image";
-import logo from "../../../public/logo.png";
+import { useFormik } from "formik";
+import { schema } from "../components/schemas";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Loader from "../components/loader/Loader";
+import Nav from "../components/Nav";
+import Footer from "../components/footer";
 export default function Registor() {
-  let [reg, setReg] = useState({
+  let initialValues = {
     name: "",
+    fatherName: "",
     email: "",
-    rollNo: "",
-  });
-
-  let [loading, setLoading] = useState(false);
-
-  const router = useRouter();
-
-  useEffect(() => {
-    if (localStorage.getItem("data") !== null) {
-      router.push("/course");
-    }
-    setLoading(false);
-  }, [router]);
-
-  const validateEmail = (email) => {
-    return String(email)
-      .toLowerCase()
-      .match(
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      );
+    phone: "",
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const { values, handleChange, handleSubmit, handleBlur, errors, touched } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: schema,
+      onSubmit: (values, { resetForm }) => {
+        resetForm();
+        console.log(values);
+      },
+    });
 
-    let validEmail = validateEmail(reg.email);
-    if (
-      reg.name === "" ||
-      reg.name.length < 3 ||
-      !validEmail ||
-      reg.rollNo === ""
-    ) {
-      alert("Please fill all the fields");
-      return;
-    }
-    localStorage.setItem("data", JSON.stringify(reg));
-    router.push("/course");
-  };
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex justify-start items-center flex-col sm:w-full lg:w-full w-full h-[100vh] mx-auto  pt-16 rounded-lg  bg-slate-100  "
-    >
-      {loading ? (
-        <Loader />
-      ) : (
-        <>
-          <Image
-            className="w-auto h-auto"
-            src={logo}
-            width={100}
-            height={100}
-            priority={true}
-            alt="Infinity code Logo Image"
-          />
+    <div className="w-full ">
+      <Nav />
 
-          <h1 className="text-1xl sm:text-2xl lg:text-4xl text-green-600   drop-shadow-lg	">
-            Welcome to the INFINITY CODE Quiz App
-          </h1>
-          <p className=" text-green-600 my-4">Please Register Yourself</p>
-          <input
-            className=" w-[80%] lg:w-[400px] sm:w-[400px] my-2 p-2 rounded drop-shadow-md focus:outline-green-800 active:outline-green-800"
-            type="text"
-            placeholder="Enter your Full Name"
-            onChange={(e) => setReg({ ...reg, name: e.target.value })}
-          />
-          <input
-            className="w-[80%]  lg:w-[400px] sm:w-[400px] my-2 p-2 rounded drop-shadow-md focus:outline-green-800 active:outline-green-800"
-            type="email"
-            name="email"
-            placeholder="Enter your Email"
-            onChange={(e) => setReg({ ...reg, email: e.target.value })}
-          />
-          <input
-            className=" w-[80%]  lg:w-[400px] sm:w-[400px] my-2 p-2 rounded  drop-shadow-md focus:outline-green-800 active:outline-green-800"
-            type="text"
-            placeholder="Enter your Roll Number"
-            name="rollNo"
-            onChange={(e) => setReg({ ...reg, rollNo: e.target.value })}
-          />
-
-          <input
-            className="bg-green-400  my-2 p-2 rounded text-white  drop-shadow-md cursor-pointer hover:bg-green-600 "
+      <div className="w-full py-5">
+        <p className="text-2xl text-center mt-5">Please Register Here</p>
+        <form
+          method="post"
+          onSubmit={handleSubmit}
+          className=" w-[100%] lg:w-[80%] mx-auto"
+        >
+          <section className="lg:flex lg:grid lg:grid-cols-2 sm:flex sm:grid sm:grid-cols-2 gap-2  w-[100%] p-5">
+            <div className="w-[100%]  border rounded p-2 mt-2">
+              <label className="block" htmlFor="name">
+                Name
+              </label>
+              <input
+                className="w-[100%] focus:outline-none"
+                type="text"
+                placeholder="Enter Name "
+                id="name"
+                name="name"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.name}
+              />
+              {errors.name && touched.name ? (
+                <small className="text-red-500 block">{errors.name}</small>
+              ) : null}
+            </div>
+            <div className="w-[100%] border rounded p-2 mt-2">
+              <label className="block" htmlFor="fatherName">
+                Father Name
+              </label>
+              <input
+                className="w-[100%] focus:outline-none"
+                type="text"
+                placeholder="Enter Father Name"
+                id="fatherName"
+                name="fatherName"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.fatherName}
+              />
+              {errors.fatherName && touched.fatherName ? (
+                <small className="text-red-500 block">
+                  {errors.fatherName}
+                </small>
+              ) : null}
+            </div>
+            <div className="w-[100%]  border rounded p-2 mt-2">
+              <label className="block" htmlFor="email">
+                Email
+              </label>
+              <input
+                className="w-[100%] focus:outline-none"
+                type="email"
+                placeholder="Email"
+                id="email"
+                name="email"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.email}
+              />
+              {errors.email && touched.email ? (
+                <small className="text-red-500 block">{errors.email}</small>
+              ) : null}
+            </div>
+            <div className="w-[100%]  border rounded p-2 mt-2">
+              <label className="block" htmlFor="phone">
+                Phone
+              </label>
+              <input
+                className="w-[100%] focus:outline-none"
+                type="text"
+                placeholder="Phone 03xxxxxxx"
+                id="phone"
+                name="phone"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.phone}
+              />
+              {errors.phone && touched.phone ? (
+                <small className="text-red-500 block">{errors.phone}</small>
+              ) : null}
+            </div>
+          </section>
+          <button
+            className="bg-green-600 w-[30%] lg:w-[150px] text-white p-2 text-center block mx-auto mt-5"
             type="submit"
-            value="Register"
-          />
-        </>
-      )}
-    </form>
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+      <Footer />
+    </div>
   );
 }

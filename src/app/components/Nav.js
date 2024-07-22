@@ -1,20 +1,12 @@
 "use client";
-import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import logo from "../../../public/logo.png";
 export default function Nav() {
   const router = useRouter();
 
-  function HandleRegister(e) {
-    console.log(e.target.innerText);
-    if (e.target.innerText === "Register") {
-      router.push("/register");
-    } else {
-      localStorage.clear();
-      router.push("/");
-      setIsRegister(false);
-    }
+  function goToRegister() {
+    router.push("/register");
   }
 
   return (
@@ -29,10 +21,10 @@ export default function Nav() {
       />
       <div>
         <button
-          className="text-white bg-green-600 py-2 px-4 rounded font-bold hover:bg-white hover:text-green-600 hover:border-green-600 hover:border"
-          onClick={(e) => HandleRegister(e)}
+          className="text-[14px] text-white bg-green-600 p-2 rounded  hover:bg-white hover:text-green-600 hover:border-green-600 hover:border"
+          onClick={() => goToRegister()}
         >
-          LogOut
+          Go to Quiz
         </button>
       </div>
     </nav>
