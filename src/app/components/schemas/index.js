@@ -6,4 +6,3 @@ export const schema = yup.object({
   email: yup.string().email().required(),
   phone: yup.number(11).required(),
 });
-git add -A
