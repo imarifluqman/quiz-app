@@ -5,7 +5,7 @@ function Testimonal(params) {
     <div className="w-[100%] mt-4 p-4">
       <p className="text-2xl border-b-2 lg:pb-4 mb-8">💕 Testimonals 👨‍⚖️</p>
 
-      <div className="w-[400px] mx-auto mt-6">
+      <div className="lg:w-[400px] w-[90%] mx-auto mt-6">
         <div className="border rounded m-2 p-4 flex justify-center items-center  bg-slate-100">
           <div className="w-[30%] mr-4">
             <Image
