@@ -19,10 +19,10 @@ export default function Registor() {
       initialValues: initialValues,
       validationSchema: schema,
       onSubmit: (values, { resetForm }) => {
-        resetForm();
-        console.log(values);
         localStorage.setItem("data", JSON.stringify(values));
         router.push("/course");
+        console.log(values);
+        resetForm();
       },
     });
 
