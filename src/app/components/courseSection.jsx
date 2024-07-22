@@ -9,8 +9,16 @@ function CourseSection(params) {
       <div className="flex flex-wrap justify-center">
         {courseIcons.map((course) => {
           return (
-            <div className="w-[150px] border-2 m-4 p-4 rounded-lg flex flex-col justify-center items-center hover:scale-110 transition ">
-              <Image src={course.icon} width={80} height={80} />
+            <div
+              key={course.name}
+              className="w-[150px] border-2 m-4 p-4 rounded-lg flex flex-col justify-center items-center hover:scale-110 transition "
+            >
+              <Image
+                src={course.icon}
+                width={80}
+                height={80}
+                alt={course.name}
+              />
               <p className="text-xl border-t-2 mt-2 w-[100%] text-center pt-2">
                 {course.name}
               </p>
