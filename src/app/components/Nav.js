@@ -28,10 +28,6 @@ export default function Nav() {
         alt="Governor Sindh Logo Image"
       />
       <div>
-        <button className="mx-2 text-green-600 border border-green-600 py-2 px-4 rounded font-bold hover:bg-green-600 hover:text-white">
-          Go to Quiz
-        </button>
-
         <button
           className="text-white bg-green-600 py-2 px-4 rounded font-bold hover:bg-white hover:text-green-600 hover:border-green-600 hover:border"
           onClick={(e) => HandleRegister(e)}

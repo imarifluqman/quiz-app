@@ -1,14 +1,14 @@
 import html from "../../../public/icons/html.png";
 import css from "../../../public/icons/css.png";
 import javascript from "../../../public/icons/js.png";
-import typescript from "../../../public/icons/typescript.png";
+import typescript from "../../../public/icons/Typescript.png";
 import nextjs from "../../../public/icons/Nextjs.png";
-import react from "../../../public/icons/react.png";
-import nodejs from "../../../public/icons/nodejs.png";
-import Python from "../../../public/icons/python.png";
-import tailwind from "../../../public/icons/tailwindCSS.png";
+import react from "../../../public/icons/React.png";
+import nodejs from "../../../public/icons/Nodejs.png";
+import Python from "../../../public/icons/Python.png";
+import tailwind from "../../../public/icons/TailwindCSS.png";
 import gitHub from "../../../public/icons/GitHub.png";
-import bootstrap from "../../../public/icons/bootstrap.png";
+import bootstrap from "../../../public/icons/Bootstrap.png";
 
 export let courseIcons = [
   {
