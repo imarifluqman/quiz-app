@@ -1,14 +1,20 @@
 "use client";
-
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import logo from "../../../public/logo.png";
 export default function Nav() {
   const router = useRouter();
 
-  function logOut(params) {
-    localStorage.clear();
-    router.push("/");
+  function HandleRegister(e) {
+    console.log(e.target.innerText);
+    if (e.target.innerText === "Register") {
+      router.push("/register");
+    } else {
+      localStorage.clear();
+      router.push("/");
+      setIsRegister(false);
+    }
   }
 
   return (
@@ -21,12 +27,18 @@ export default function Nav() {
         priority={true}
         alt="Governor Sindh Logo Image"
       />
-      <button
-        className="text-white bg-green-600 py-2 px-4 rounded font-bold"
-        onClick={() => logOut()}
-      >
-        LogOut
-      </button>
+      <div>
+        <button className="mx-2 text-green-600 border border-green-600 py-2 px-4 rounded font-bold hover:bg-green-600 hover:text-white">
+          Go to Quiz
+        </button>
+
+        <button
+          className="text-white bg-green-600 py-2 px-4 rounded font-bold hover:bg-white hover:text-green-600 hover:border-green-600 hover:border"
+          onClick={(e) => HandleRegister(e)}
+        >
+          LogOut
+        </button>
+      </div>
     </nav>
   );
 }

@@ -3,7 +3,7 @@ import Image from "next/image";
 import logo from "../../../public/logo.png";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Loader from "./loader/Loader";
+import Loader from "../components/loader/Loader";
 export default function Registor() {
   let [reg, setReg] = useState({
     name: "",
@@ -11,7 +11,7 @@ export default function Registor() {
     rollNo: "",
   });
 
-  let [loading, setLoading] = useState(true);
+  let [loading, setLoading] = useState(false);
 
   const router = useRouter();
 
