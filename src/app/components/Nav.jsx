@@ -4,14 +4,14 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import logo from "../../../public/logo.png";
 import { useEffect, useState } from "react";
-export default function Nav() {
+export default function Nav(props) {
   let [data, setData] = useState({});
   const router = useRouter();
 
   useEffect(() => {
     let xyz = JSON.parse(localStorage.getItem("data"));
     setData(xyz);
-    console.log(data);
+   
   }, []);
 
   function goToRegister() {
@@ -34,12 +34,14 @@ export default function Nav() {
         alt="Governor Sindh Logo Image"
       />
       <div className="flex justify-center items-center">
-        <button
-          className="text-[14px] text-white bg-green-600 p-2 rounded  hover:bg-white hover:text-green-600 hover:border-green-600 hover:border"
-          onClick={() => goToRegister()}
-        >
-          Go to Quiz
-        </button>
+        {props.data ? null : (
+          <button
+            className="text-[14px] text-white bg-green-600 p-2 rounded  hover:bg-white hover:text-green-600 hover:border-green-600 hover:border"
+            onClick={() => goToRegister()}
+          >
+            Go to Quiz
+          </button>
+        )}
 
         {data ? (
           <>
