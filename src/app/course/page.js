@@ -14,7 +14,7 @@ export default function Page(params) {
   useEffect(() => {
     let data = JSON.parse(localStorage.getItem("data"));
     if (data === null) {
-      router.push("/");
+      router.push("/register");
     } else {
       setIsLoadin(false);
     }

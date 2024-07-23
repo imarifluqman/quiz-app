@@ -30,7 +30,7 @@ export default function Page(params) {
     const pdfHeight = pdf.internal.pageSize.getHeight();
 
     pdf.addImage(certificatBase64, "png", 0, 0, pdfWidth, pdfHeight);
-    pdf.text(data.rollNo, 230, 63);
+    pdf.text(data.phone, 230, 63);
     pdf.text(data.course.toUpperCase(), 150, 128);
     pdf.text(data.score.toString() + "%", 220, 128);
     pdf.setFontSize(25);

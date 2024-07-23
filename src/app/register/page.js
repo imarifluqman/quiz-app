@@ -7,6 +7,19 @@ import Loader from "../components/loader/Loader";
 import Nav from "../components/Nav";
 import Footer from "../components/footer";
 export default function Registor() {
+  let [isLoading, setLoading] = useState(true);
+  let router = useRouter();
+
+  useEffect(() => {
+    let data = JSON.parse(localStorage.getItem("data"));
+    console.log(data);
+    if (data) {
+      router.push("/course");
+    } else {
+      setLoading(false);
+    }
+  }, []);
+
   let initialValues = {
     name: "",
     fatherName: "",
@@ -26,8 +39,16 @@ export default function Registor() {
       },
     });
 
+  if (isLoading) {
+    return (
+      <div className="w-full h-[100vh] flex justify-center items-center">
+        <Loader />
+      </div>
+    );
+  }
+
   return (
-    <div className="w-full ">
+    <div className="w-full">
       <Nav />
 
       <div className="w-full py-5">
@@ -121,6 +142,7 @@ export default function Registor() {
           </button>
         </form>
       </div>
+
       <Footer />
     </div>
   );
