@@ -41,7 +41,9 @@ function Footer(params) {
       </div>
 
       <p className="text-center py-4 bg-slate-200">
-        © {new Date().getFullYear()} - All Rights Reserved
+        Developed by{" "}
+        <span className="text-green-700 text-bold cursor-pointer">Arif Luqman ❤ </span> ©{" "}
+        {new Date().getFullYear()} - All Rights Reserved
       </p>
     </div>
   );

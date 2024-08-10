@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import quiz from "../components/quiz.json";
 import Loader from "../components/loader/Loader";
-import Nav from "../components/Nav";
-import Footer from "../components/footer";
+
 export default function Page(params) {
   let [userData, setuserData] = useState({});
   let [isLoading, setIsLoadin] = useState(true);
@@ -41,7 +40,6 @@ export default function Page(params) {
         </div>
       ) : (
         <>
-          <Nav data={userData} />
           <div className="w-[100%] h-[100vh] flex justify-center items-center flex-col">
             <div className="w-[100%]   flex justify-center items-center flex-col gap-4">
               <p className="text-3xl text-green-700 font-bold">Select Course</p>
@@ -63,7 +61,6 @@ export default function Page(params) {
               })}
             </div>
           </div>
-          <Footer />
         </>
       )}
     </>

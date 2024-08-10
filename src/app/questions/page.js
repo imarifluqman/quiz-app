@@ -1,10 +1,8 @@
 "use client";
 import quiz from "../components/quiz.json";
-import Nav from "../components/Nav";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Loader from "../components/loader/Loader";
-import Footer from "../components/footer";
 
 export default function Question() {
   let [user, setUser] = useState({});
@@ -68,7 +66,6 @@ export default function Question() {
         </div>
       ) : (
         <div className=" w-full ">
-          <Nav data={user} />
           <div className="sm:w-50 lg:w-1/2 w-[90%] h-[500px] mx-auto my-4 p-4 rounded-lg  bg-slate-100 relative">
             <p className="lg:text-2xl sm:text-2xl text-[20px] font-bold">
               <span className="text-green-600"> Question# {num + 1}</span> :{" "}
@@ -109,8 +106,6 @@ export default function Question() {
               Next
             </button>
           </div>
-
-          <Footer />
         </div>
       )}
     </>

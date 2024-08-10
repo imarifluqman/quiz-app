@@ -11,7 +11,6 @@ export default function Nav(props) {
   useEffect(() => {
     let xyz = JSON.parse(localStorage.getItem("data"));
     setData(xyz);
-   
   }, []);
 
   function goToRegister() {
@@ -45,15 +44,15 @@ export default function Nav(props) {
 
         {data ? (
           <>
-            <p className="mx-2 text-[12px]">{data?.name}</p>
+            <p className="mx-2 text-[12px] text-green-600">{data?.name}</p>
 
             <div className="flex justify-center items-center flex-col w-[40px]  group/abc	">
               <LiaSignOutAltSolid
-                className="text-3xl -rotate-90 "
+                className="text-3xl -rotate-90 text-red-600 hover:text-red-600 cursor-pointer"
                 title="Sign Out"
                 onClick={signOut}
               />
-              <small className="text-[8px] hidden group-hover/abc:inline-block ">
+              <small className="text-[8px] text-red-600 hidden group-hover/abc:inline-block ">
                 Sign Out
               </small>
             </div>

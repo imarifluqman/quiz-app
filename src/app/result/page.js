@@ -4,7 +4,6 @@ import jsPDF from "jspdf";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Loader from "../components/loader/Loader";
-import Nav from "../components/Nav";
 import certificatBase64 from "../components/base64";
 
 export default function Page(params) {
@@ -43,7 +42,6 @@ export default function Page(params) {
 
   return (
     <div className=" w-[100%] h-[100vh]">
-      <Nav />
       {isLoading ? (
         <div className=" w-[100%] h-[100vh] flex justify-center items-center">
           <Loader />

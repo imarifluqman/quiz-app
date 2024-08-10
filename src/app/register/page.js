@@ -4,15 +4,13 @@ import { schema } from "../components/schemas";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Loader from "../components/loader/Loader";
-import Nav from "../components/Nav";
-import Footer from "../components/footer";
+
 export default function Registor() {
   let [isLoading, setLoading] = useState(true);
   let router = useRouter();
 
   useEffect(() => {
     let data = JSON.parse(localStorage.getItem("data"));
-    console.log(data);
     if (data) {
       router.push("/course");
     } else {
@@ -49,8 +47,6 @@ export default function Registor() {
 
   return (
     <div className="w-full">
-      <Nav />
-
       <div className="w-full py-5">
         <p className="text-2xl text-center mt-5">Please Register Here</p>
         <form
@@ -142,8 +138,6 @@ export default function Registor() {
           </button>
         </form>
       </div>
-
-      <Footer />
     </div>
   );
 }
