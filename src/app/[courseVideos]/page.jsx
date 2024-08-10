@@ -35,13 +35,13 @@ function Page({ params }) {
           </div>
         )}
 
-        <div className="w-[100%] flex flex-wrap place-items-top justify-center gap-2 mx-auto	p-4">
+        <div className="w-[100%] flex flex-wrap place-items-top justify-center gap-2 mx-auto py-4">
           {data ? (
             data.video_Url?.map((v, i) => {
               return (
                 <div
                   key={i}
-                  className="w-[170px] cursor-pointer hover:scale-110 transition"
+                  className="w-[160px] cursor-pointer hover:scale-110 transition"
                 >
                   <Image
                     className=""
