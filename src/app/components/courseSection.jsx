@@ -6,7 +6,7 @@ function CourseSection() {
   let router = useRouter();
 
   const navigateWithData = (data) => {
-    router.push(`/${data.name}`);
+    router.push(`/${data.name}?playlistId=${data.PLAYLIST_ID}`);
   };
 
   return (

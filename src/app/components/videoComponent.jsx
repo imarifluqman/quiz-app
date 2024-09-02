@@ -2,10 +2,10 @@ function VideoComponent({ data }) {
   return (
     <>
       <iframe
-        // className="w-[100%] h-[415px]"
+        className="w-[auto]"
         width="660"
         height="415"
-        src={data}
+        src={`https://www.youtube.com/embed/${data}`}
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerPolicy="strict-origin-when-cross-origin"
