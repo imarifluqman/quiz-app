@@ -7,7 +7,7 @@ function VideoComponent({ data }) {
         height="415"
         src={`https://www.youtube.com/embed/${data}`}
         title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media;"
         referrerPolicy="strict-origin-when-cross-origin"
         allowFullScreen
       ></iframe>
