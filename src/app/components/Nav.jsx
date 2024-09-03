@@ -24,6 +24,7 @@ export default function Nav(props) {
 
   return (
     <nav className="flex justify-between items-center w-full  py-2 px-4 shadow">
+    <a href="#">
       <Image
         className="w-auto h-auto"
         src={logo}
@@ -32,6 +33,7 @@ export default function Nav(props) {
         priority={true}
         alt="Governor Sindh Logo Image"
       />
+      </a>
       <div className="flex justify-center items-center">
         {props.data ? null : (
           <button
