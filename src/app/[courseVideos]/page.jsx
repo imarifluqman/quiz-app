@@ -53,7 +53,7 @@ function Page({ params }) {
         {video && (
           <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  z-10">
             <button
-              className="absolute bottom-[-20px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[40px] h-[40px] bold bg-white hover:bg-slate-100 text-red-500 text-2xl flex justify-center items-center cursor-pointer rounded-full"
+              className="absolute bottom-[20px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[40px] h-[40px] bold bg-white hover:bg-slate-100 text-red-500 text-2xl flex justify-center items-center cursor-pointer rounded-full"
               onClick={() => setVideo("")}
             >
               X
