@@ -24,7 +24,7 @@ export default function Nav(props) {
 
   return (
     <nav className="flex justify-between items-center w-full  py-2 px-4 shadow">
-    <a href="#">
+    <a href="/">
       <Image
         className="w-auto h-auto"
         src={logo}
