@@ -2,7 +2,7 @@ function VideoComponent({ data }) {
   return (
     <>
       <iframe
-        className="w-[350px]  lg:w-[660px] lg:h-[415px] sm:w-[660px] sm:h-[415px] mx-auto"
+        className="w-[350px] h-[300px] lg:w-[660px] lg:h-[415px] sm:w-[660px] sm:h-[415px] mx-auto"
         // width="660"
         // height="415"
         src={`https://www.youtube.com/embed/${data}`}
