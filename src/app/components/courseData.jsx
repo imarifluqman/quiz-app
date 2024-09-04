@@ -52,7 +52,7 @@ export let courseData = [
     PLAYLIST_ID: "PLwGdqUZWnOp2rDbpfKAeUi9f8qZMS7_cv",
   },
   {
-    name: "Node.js , Express JS , MongoDB & Backend",
+    name: "Node.js Express.js MongoDB Backend",
     icon: nodejs,
     PLAYLIST_ID: "PLu71SKxNbfoBGh_8p_NS-ZAh6v7HhYqHW",
   },
