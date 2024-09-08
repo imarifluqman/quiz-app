@@ -12,10 +12,10 @@ import "swiper/css/pagination";
 import "./styles.css";
 import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper/modules";
 import "swiper/css";
-import hero1 from "../../../public/heroImages/hero1.png";
+import hero1 from "../../../public/heroImages/hero1.jpg";
 import hero2 from "../../../public/heroImages/hero2.jpg";
 import hero3 from "../../../public/heroImages/hero3.jpg";
-import hero4 from "../../../public/heroImages/hero4.png";
+import hero4 from "../../../public/heroImages/hero4.jpg";
 
 function HeroSection() {
   return (
