@@ -1,9 +1,15 @@
+
 import Image from "next/image";
 import Next from "../../../public/icons/Nextjs.png";
 function Testimonal(params) {
   return (
     <div className="w-[100%] mt-4 p-4">
-      <p className="text-1xl border-b-2 lg:pb-4 mb-8">💕 Testimonals 👨‍⚖️</p>
+      <div className="flex justify-between align-items-center py-4  border-b-2">
+        <p className="text-1xl">💕 Testimonals 👨‍⚖️</p>
+        <button className="text-[14px] mr-2 text-white bg-green-600 p-2 rounded  hover:bg-white hover:text-green-600 hover:border-green-600 hover:border">
+          Add Testimonial
+        </button>
+      </div>
 
       <div className="lg:w-[400px] w-[90%] mx-auto mt-6">
         <div className="border rounded m-2 p-4 flex justify-center items-center  bg-slate-100">

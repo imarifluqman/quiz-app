@@ -37,7 +37,7 @@ export default function Nav(props) {
       <div className="flex justify-center items-center">
         {props.data ? null : (
           <button
-            className="text-[14px] text-white bg-green-600 p-2 rounded  hover:bg-white hover:text-green-600 hover:border-green-600 hover:border"
+            className="text-[14px] mr-2 text-white bg-green-600 p-2 rounded  hover:bg-white hover:text-green-600 hover:border-green-600 hover:border"
             onClick={() => goToRegister()}
           >
             Go to Quiz

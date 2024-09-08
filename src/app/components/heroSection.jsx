@@ -1,34 +1,47 @@
 "use client";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+import "./styles.css";
+import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper/modules";
+import "swiper/css";
 import hero1 from "../../../public/heroImages/hero1.png";
 import hero2 from "../../../public/heroImages/hero2.jpg";
 import hero3 from "../../../public/heroImages/hero3.jpg";
 import hero4 from "../../../public/heroImages/hero4.png";
 
 function HeroSection() {
-  let img = [hero1, hero2, hero3, hero4];
-  let [num, setNum] = useState(0);
-
-  useEffect(() => {
-    let interval = setInterval(() => {
-      setNum(num + 1);
-      if (num === img.length - 1) {
-        setNum(0);
-      }
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [num]);
-
   return (
     <>
-      <div className="w-[100%] lg:h-[90vh] sm:h-[90vh] ">
-        <Image
-          className="w-[100%] lg:h-[90vh] sm:h-[90vh]"
-          src={img[num]}
-          alt="Hero Image"
-        />
-      </div>
+      <Swiper
+        cssMode={true}
+        navigation={true}
+        pagination={true}
+        mousewheel={true}
+        keyboard={true}
+        modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+        className="mySwiper"
+      >
+        <SwiperSlide>
+          <Image src={hero1} alt="hero image" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Image src={hero2} alt="hero image" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Image src={hero3} alt="hero image" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Image src={hero4} alt="hero image" />
+        </SwiperSlide>
+      </Swiper>
     </>
   );
 }

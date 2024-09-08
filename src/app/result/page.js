@@ -2,7 +2,7 @@
 import { IoMdDownload } from "react-icons/io";
 import jsPDF from "jspdf";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useId } from "react";
 import Loader from "../components/loader/Loader";
 import certificatBase64 from "../components/base64";
 
@@ -22,6 +22,10 @@ export default function Page(params) {
 
     setData(fetchData);
   }, [router]);
+  let id =
+    Math.random().toString(36).substring(2, 15) +
+    Math.random().toString(36).substring(2, 15);
+  console.log(id.slice(0, 12));
 
   const downloadPdf = () => {
     const pdf = new jsPDF("l", "mm", "a4", true);
@@ -29,7 +33,7 @@ export default function Page(params) {
     const pdfHeight = pdf.internal.pageSize.getHeight();
 
     pdf.addImage(certificatBase64, "png", 0, 0, pdfWidth, pdfHeight);
-    pdf.text(data.phone, 230, 63);
+    pdf.text(id.slice(0, 12), 230, 63);
     pdf.text(data.course.toUpperCase(), 150, 128);
     pdf.text(data.score.toString() + "%", 220, 128);
     pdf.setFontSize(25);

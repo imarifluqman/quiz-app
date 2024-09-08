@@ -19,12 +19,12 @@ export let courseData = [
   {
     name: "CSS",
     icon: css,
-    PLAYLIST_ID: "PLwGdqUZWnOp1xJWvy3dkkKEh65MvyWSb0",
+    PLAYLIST_ID: "PL0b6OzIxLPbzDsI5YXUa01QzxOWyqmrWw",
   },
   {
     name: "Bootstrap",
     icon: bootstrap,
-    PLAYLIST_ID: "PLwGdqUZWnOp2f1JwXA3k47UteMxaIw6j4",
+    PLAYLIST_ID: "PL0b6OzIxLPbz1cgxiH5KCBsyQij1HsPtG",
   },
   {
     name: "Tailwind",
@@ -52,7 +52,7 @@ export let courseData = [
     PLAYLIST_ID: "PLwGdqUZWnOp2rDbpfKAeUi9f8qZMS7_cv",
   },
   {
-    name: "Node.js Express.js MongoDB Backend",
+    name: "Backend",
     icon: nodejs,
     PLAYLIST_ID: "PLu71SKxNbfoBGh_8p_NS-ZAh6v7HhYqHW",
   },

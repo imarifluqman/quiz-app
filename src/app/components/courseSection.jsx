@@ -20,7 +20,7 @@ function CourseSection() {
             <div
               onClick={() => navigateWithData(course)}
               key={course.name}
-              className="w-[120px] lg:w-[150px] sm:w-[150px] border-2 m-4 p-2 rounded-lg flex flex-col justify-center items-center hover:scale-110 transition "
+              className="w-[120px] lg:w-[150px] sm:w-[150px] border-2 m-4 p-2 rounded-lg flex flex-col justify-center items-center hover:scale-110 transition cursor-pointer "
             >
               <Image
                 src={course.icon}
