@@ -51,7 +51,7 @@ function Testimonal(params) {
         </button>
       </div>
 
-      <div className="lg:w-[400px] w-[90%] mx-auto mt-6">
+      <div className="lg:w-[400px] w-[95%] mx-auto mt-6">
         <div className="border rounded m-2 p-4 flex justify-center items-center  bg-slate-100">
           <div className="w-[30%] mr-4">
             <Image
