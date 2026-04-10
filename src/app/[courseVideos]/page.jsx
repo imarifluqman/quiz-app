@@ -49,49 +49,90 @@ function Page({ params }) {
 
   return (
     <>
-      <div className="w-[100vw] relative">
-        {video && (
-          <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  z-10">
+      {/* Video Modal Overlay */}
+      {video && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
+          onClick={() => setVideo("")}
+        >
+          <div
+            className="relative"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
-              className="absolute bottom-[-60px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[40px] h-[40px] bold bg-white hover:bg-slate-100 text-red-500 text-2xl flex justify-center items-center cursor-pointer rounded-full"
+              className="absolute -top-4 -right-4 z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-red-500 hover:scale-110 transition-all duration-200 font-bold text-lg"
               onClick={() => setVideo("")}
             >
               X
             </button>
-            <VideoComponent className="mx-auto block" data={video} />
+            <div className="rounded-2xl overflow-hidden shadow-2xl">
+              <VideoComponent data={video} />
+            </div>
           </div>
-        )}
+        </div>
+      )}
 
-        <p className="lg:text-3xl sm:text-2xl text-xl text-center p-4 bg-slate-100">
-          🤍🤍 Learn {params.courseVideos} 🤍🤍
-        </p>
+      <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+        {/* Page Header */}
+        <div className="bg-gradient-to-r from-blue-600 to-purple-600 py-10 px-4">
+          <div className="max-w-6xl mx-auto text-center">
+            <p className="text-blue-200 text-sm font-medium tracking-widest uppercase mb-2">Course Playlist</p>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+              Learn {params.courseVideos}
+            </h1>
+            <div className="mt-4 w-16 h-1 bg-white/40 mx-auto rounded-full"></div>
+            {data && (
+              <p className="text-blue-100 mt-4 text-sm">{data.length} videos available</p>
+            )}
+          </div>
+        </div>
 
-        <div className="w-[100%] flex flex-wrap place-items-top justify-center gap-2 mx-auto py-4">
+        {/* Video Grid */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
           {data ? (
-            data?.map((v, i) => {
-              return (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {data.map((v, i) => (
                 <div
                   key={i}
-                  className="w-[160px] cursor-pointer hover:scale-110 transition"
+                  onClick={() => setVideo(v.snippet.resourceId.videoId)}
+                  className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer hover:-translate-y-1"
                 >
-                  <Image
-                    className=""
-                    width={170}
-                    height={100}
-                    src={v.snippet.thumbnails.standard.url}
-                    alt={v.snippet.title}
-                    onClick={() => {
-                      setVideo(v.snippet.resourceId.videoId);
-                    }}
-                  />
-                  <p className="text-[12px]">{v.snippet.title}</p>
-                </div>
-              );
-            })
-          ) : (
-            <div className="w-[100%] h-[70vh] flex justify-center items-center">
-              <Loader />
+                  {/* Thumbnail */}
+                  <div className="relative overflow-hidden aspect-video">
+                    <Image
+                      width={400}
+                      height={225}
+                      src={v.snippet.thumbnails.standard.url}
+                      alt={v.snippet.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+                      <div className="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 scale-75 group-hover:scale-100 transition-all duration-300 shadow-lg">
+                        <svg className="w-6 h-6 text-blue-600 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
 
+                  {/* Video Info */}
+                  <div className="p-4">
+                    <div className="flex items-start gap-3">
+                      <span className="shrink-0 mt-0.5 w-7 h-7 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 text-white text-xs font-bold flex items-center justify-center">
+                        {i + 1}
+                      </span>
+                      <h3 className="text-sm font-medium text-gray-800 line-clamp-2 leading-snug group-hover:text-blue-600 transition-colors duration-200">
+                        {v.snippet.title}
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="w-full h-[60vh] flex flex-col items-center justify-center gap-4">
+              <Loader />
+              <p className="text-gray-400 text-sm animate-pulse">Loading videos...</p>
             </div>
           )}
         </div>

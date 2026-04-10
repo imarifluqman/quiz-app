@@ -13,7 +13,7 @@ export default function Question() {
   let [loading, setLoading] = useState(true);
   const router = useRouter();
 
-  function fetchData(params) {
+  function fetchData() {
     let data = JSON.parse(localStorage.getItem("data"));
     if (data === null) {
       router.push("/");
@@ -35,7 +35,6 @@ export default function Question() {
       setScore(score + 1);
     }
     setSelected(e);
-
     setNextBtn(true);
   };
 
@@ -48,63 +47,103 @@ export default function Question() {
           score: Math.round((score / quiz[course].length) * 100),
         })
       );
-
       router.push("/result");
       return;
     }
-
     setNum(num + 1);
     selected.target.checked = false;
     setNextBtn(false);
   };
 
+  const total = course ? quiz[course].length : 0;
+  const progress = total ? Math.round(((num + 1) / total) * 100) : 0;
+  const isLast = course && num === quiz[course].length - 1;
+
   return (
     <>
       {loading ? (
-        <div className="w-[100%] h-[100vh] flex justify-center items-center">
+        <div className="w-full h-[80vh] flex justify-center items-center">
           <Loader />
         </div>
       ) : (
-        <div className=" w-full ">
-          <div className="sm:w-50 lg:w-1/2 w-[90%] h-[500px] mx-auto my-4 p-4 rounded-lg  bg-slate-100 relative">
-            <p className="lg:text-2xl sm:text-2xl text-[20px] font-bold">
-              <span className="text-green-600"> Question# {num + 1}</span> :{" "}
-              {quiz[course][num].question}
-            </p>
-
-            <div className="my-8">
-              {quiz[course][num].options.map((option, index) => {
-                return (
-                  <div className="my-2 flex items-center" key={index}>
-                    <input
-                      className="lg:w-4 sm:w-4 w-4 h-4 lg:h-4 sm:h-4"
-                      onClick={(e) => {
-                        checkedQuestion(e);
-                      }}
-                      type="radio"
-                      value={option}
-                      id={index}
-                      name="option"
-                      disabled={nextBtn}
-                    />
-                    <label
-                      className="hover:bg-slate-300 font-bold text-lg lg:w-[90%] sm:w-[90%]  block w-[90%] py-1 px-4 rounded cursor-pointer m-2"
-                      htmlFor={index}
-                    >
-                      {option}
-                    </label>
-                  </div>
-                );
-              })}
+        <div className="min-h-[80vh] bg-gradient-to-b from-slate-50 to-white flex items-center justify-center px-4 py-10">
+          <div className="w-full max-w-2xl">
+            {/* Progress Header */}
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-sm font-medium text-gray-500 uppercase tracking-wider">{course} Quiz</span>
+              <span className="text-sm font-semibold text-blue-600">{num + 1} / {total}</span>
+            </div>
+            <div className="w-full h-2 bg-gray-200 rounded-full mb-8 overflow-hidden">
+              <div
+                className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all duration-500 ease-out"
+                style={{ width: `${progress}%` }}
+              ></div>
             </div>
 
-            <button
-              disabled={!nextBtn}
-              className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded absolute bottom-5 right-5"
-              onClick={() => nextQuestion()}
-            >
-              Next
-            </button>
+            {/* Question Card */}
+            <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8">
+              <div className="flex items-start gap-3 mb-8">
+                <span className="shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 text-white text-sm font-bold flex items-center justify-center">
+                  {num + 1}
+                </span>
+                <h2 className="text-lg sm:text-xl font-semibold text-gray-800 leading-relaxed">
+                  {quiz[course][num].question}
+                </h2>
+              </div>
+
+              {/* Options */}
+              <div className="space-y-3">
+                {quiz[course][num].options.map((option, index) => {
+                  const optionId = `q${num}-opt${index}`;
+                  return (
+                    <label
+                      key={index}
+                      htmlFor={optionId}
+                      className={`flex items-center gap-4 p-4 rounded-xl border-2 cursor-pointer transition-all duration-200 ${
+                        nextBtn
+                          ? "cursor-default opacity-80"
+                          : "hover:border-blue-300 hover:bg-blue-50/50"
+                      } ${
+                        selected?.target?.value === option
+                          ? "border-blue-500 bg-blue-50"
+                          : "border-gray-100 bg-gray-50/50"
+                      }`}
+                    >
+                      <input
+                        className="w-4 h-4 accent-blue-600"
+                        onClick={(e) => checkedQuestion(e)}
+                        type="radio"
+                        value={option}
+                        id={optionId}
+                        name="option"
+                        disabled={nextBtn}
+                      />
+                      <span className="text-sm sm:text-base font-medium text-gray-700">
+                        {option}
+                      </span>
+                    </label>
+                  );
+                })}
+              </div>
+
+              {/* Next Button */}
+              <div className="flex justify-end mt-8">
+                <button
+                  disabled={!nextBtn}
+                  className={`px-8 py-3 font-semibold rounded-xl transition-all duration-300 flex items-center gap-2 ${
+                    nextBtn
+                      ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-md hover:shadow-lg hover:from-blue-600 hover:to-purple-700"
+                      : "bg-gray-100 text-gray-400 cursor-not-allowed"
+                  }`}
+                  onClick={() => nextQuestion()}
+                >
+                  {isLast ? "Finish" : "Next"}
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}
