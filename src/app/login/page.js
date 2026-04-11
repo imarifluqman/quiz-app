@@ -1,34 +1,27 @@
 "use client";
 import { useFormik } from "formik";
-import { schema } from "../components/schemas";
+import { loginSchema } from "../components/schemas";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Loader from "../components/loader/Loader";
 import Link from "next/link";
 import { useAuth } from "../components/AuthContext";
 
-export default function Register() {
-  const { user } = useAuth();
+export default function Login() {
+  const { user, login } = useAuth();
   let [apiError, setApiError] = useState("");
   let [submitting, setSubmitting] = useState(false);
-  let [emailSent, setEmailSent] = useState(false);
   let router = useRouter();
 
   const { values, handleChange, handleSubmit, handleBlur, errors, touched } =
     useFormik({
-      initialValues: {
-        name: "",
-        fatherName: "",
-        email: "",
-        phone: "",
-        password: "",
-      },
-      validationSchema: schema,
-      onSubmit: async (values, { resetForm }) => {
+      initialValues: { email: "", password: "" },
+      validationSchema: loginSchema,
+      onSubmit: async (values) => {
         setApiError("");
         setSubmitting(true);
         try {
-          const res = await fetch("/api/auth/register", {
+          const res = await fetch("/api/auth/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(values),
@@ -36,10 +29,10 @@ export default function Register() {
           const data = await res.json();
 
           if (res.ok) {
-            setEmailSent(true);
-            resetForm();
+            login(data);
+            router.push(data.role === "admin" ? "/admin/dashboard" : "/dashboard");
           } else {
-            setApiError(data.error || "Registration failed");
+            setApiError(data.error || "Login failed");
           }
         } catch {
           setApiError("Something went wrong. Please try again.");
@@ -62,43 +55,16 @@ export default function Register() {
   }
 
   const fields = [
-    { name: "name", label: "Full Name", placeholder: "Enter your name", type: "text" },
-    { name: "fatherName", label: "Father Name", placeholder: "Enter father name", type: "text" },
     { name: "email", label: "Email Address", placeholder: "you@example.com", type: "email" },
-    { name: "phone", label: "Phone Number", placeholder: "03XXXXXXXXX", type: "text" },
-    { name: "password", label: "Password", placeholder: "Min 6 characters", type: "password" },
+    { name: "password", label: "Password", placeholder: "Enter your password", type: "password" },
   ];
-
-  if (emailSent) {
-    return (
-      <div className="min-h-[80vh] bg-gradient-to-b from-slate-50 to-white flex items-center justify-center px-4 py-12">
-        <div className="w-full max-w-lg text-center">
-          <div className="bg-white rounded-2xl shadow-lg p-8">
-            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center">
-              <span className="text-3xl">&#9993;</span>
-            </div>
-            <h1 className="text-2xl font-bold text-gray-800 mb-2">Check Your Email</h1>
-            <p className="text-gray-500 mb-6">
-              We&apos;ve sent a verification link to your email address. Please click the link to verify your account.
-            </p>
-            <Link
-              href="/login"
-              className="inline-block px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-300 shadow-md"
-            >
-              Go to Login
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-[80vh] bg-gradient-to-b from-slate-50 to-white flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-lg">
         <div className="text-center mb-8">
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-2">Create Account</h1>
-          <p className="text-gray-500">Register to start your quiz journey</p>
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-2">Welcome Back</h1>
+          <p className="text-gray-500">Login to continue your quiz journey</p>
           <div className="mt-4 w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
         </div>
 
@@ -138,19 +104,25 @@ export default function Register() {
               </div>
             ))}
 
+            <div className="text-right -mt-2">
+              <Link href="/forgot-password" className="text-sm text-blue-600 hover:text-blue-700 font-medium">
+                Forgot Password?
+              </Link>
+            </div>
+
             <button
               className="w-full py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-300 shadow-md hover:shadow-lg mt-2 disabled:opacity-60"
               type="submit"
               disabled={submitting}
             >
-              {submitting ? "Creating Account..." : "Continue"}
+              {submitting ? "Logging in..." : "Login"}
             </button>
           </form>
 
           <p className="text-center text-sm text-gray-500 mt-6">
-            Already have an account?{" "}
-            <Link href="/login" className="text-blue-600 hover:text-blue-700 font-medium">
-              Login
+            Don&apos;t have an account?{" "}
+            <Link href="/register" className="text-blue-600 hover:text-blue-700 font-medium">
+              Register
             </Link>
           </p>
         </div>

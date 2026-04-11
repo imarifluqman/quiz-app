@@ -25,3 +25,30 @@
   width: 36px;
   border-radius: 6px;
 }
+
+.testimonial-swiper .swiper-button-next,
+.testimonial-swiper .swiper-button-prev {
+  color: #3b82f6;
+  width: 36px;
+  height: 36px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-swiper .swiper-button-next::after,
+.testimonial-swiper .swiper-button-prev::after {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.testimonial-swiper .swiper-pagination-bullet {
+  background: #93c5fd;
+  opacity: 1;
+}
+
+.testimonial-swiper .swiper-pagination-bullet-active {
+  background: #3b82f6;
+  width: 24px;
+  border-radius: 6px;
+}

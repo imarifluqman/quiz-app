@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Nav from "./components/Nav";
 import Footer from "./components/footer";
+import { AuthProvider } from "./components/AuthContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -19,9 +20,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${inter.className} w-[100vw] overflow-x-hidden`}>
-        <Nav />
-        {children}
-        <Footer />
+        <AuthProvider>
+          <Nav />
+          {children}
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );
