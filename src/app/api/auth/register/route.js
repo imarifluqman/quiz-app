@@ -4,18 +4,18 @@ import bcrypt from "bcryptjs";
 import crypto from "crypto";
 import { NextResponse } from "next/server";
 import { sendVerificationEmail } from "@/lib/email";
+import { registerSchema } from "@/lib/validations";
+import { compose, withValidation } from "@/lib/middleware";
+import { withEmailRateLimit } from "@/lib/rateLimitMiddleware";
+import { RATE_LIMITS } from "@/lib/rateLimiter";
 
-export async function POST(request) {
+async function registerHandler(request, { data }) {
   try {
-    const { name, fatherName, email, phone, password } = await request.json();
-
-    if (!name || !fatherName || !email || !phone || !password) {
-      return NextResponse.json({ error: "All fields are required" }, { status: 400 });
-    }
+    const { name, fatherName, email, phone, password } = data;
 
     await connectDB();
 
-    const existingUser = await User.findOne({ email: email.toLowerCase() });
+    const existingUser = await User.findOne({ email });
     if (existingUser) {
       return NextResponse.json({ error: "Email already registered" }, { status: 409 });
     }
@@ -28,20 +28,27 @@ export async function POST(request) {
     await User.create({
       name,
       fatherName,
-      email: email.toLowerCase(),
+      email,
       phone,
       password: hashedPassword,
       emailVerificationToken: hashedToken,
       emailVerificationExpires: new Date(Date.now() + 24 * 60 * 60 * 1000),
     });
 
-    await sendVerificationEmail(email.toLowerCase(), verificationToken);
+    await sendVerificationEmail(email, verificationToken);
 
     return NextResponse.json(
       { message: "Verification email sent. Please check your inbox." },
       { status: 201 }
     );
   } catch (error) {
+    console.error("Register error:", error);
     return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
   }
 }
+
+// Apply rate limiting by email and validation
+export const POST = compose(
+  withEmailRateLimit({ ...RATE_LIMITS.REGISTER, keyPrefix: "register" }),
+  withValidation(registerSchema)
+)(registerHandler);

@@ -4,15 +4,17 @@ import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Loader from "../components/loader/Loader";
 import { useAuth } from "../components/AuthContext";
+import { useQuiz } from "../components/QuizContext";
 
 export default function Question() {
-  const { user, updateUser } = useAuth();
+  const { user } = useAuth();
+  const { currentCourse, saveProgress, clearQuiz } = useQuiz();
   const [num, setNum] = useState(0);
   const [answers, setAnswers] = useState({});
   const [timeLeft, setTimeLeft] = useState(45 * 60); // 45 minutes total
   const router = useRouter();
 
-  const course = user?.course;
+  const course = currentCourse;
   const questions = course ? quiz[course] : [];
   const total = questions.length;
   const isLast = num === total - 1;
@@ -24,7 +26,6 @@ export default function Question() {
       if (answers[i] === q.correctAnswer) correct++;
     });
     const finalScore = Math.round((correct / total) * 100);
-    updateUser({ ...user, score: finalScore });
 
     fetch("/api/quiz/attempt", {
       method: "POST",
@@ -36,8 +37,12 @@ export default function Question() {
       }),
     }).catch(() => {});
 
+    // Store result temporarily for result page
+    localStorage.setItem("lastQuizResult", JSON.stringify({ course, score: finalScore }));
+    clearQuiz();
+
     router.push("/result");
-  }, [answers, questions, total, course, user, updateUser, router]);
+  }, [answers, questions, total, course, clearQuiz, router]);
 
   // Timer - 45 minutes total
   useEffect(() => {

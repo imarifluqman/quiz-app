@@ -2,14 +2,14 @@ import { connectDB } from "@/lib/mongodb";
 import User from "@/models/User";
 import crypto from "crypto";
 import { NextResponse } from "next/server";
+import { verifyEmailSchema } from "@/lib/validations";
+import { compose, withValidation } from "@/lib/middleware";
+import { withRateLimit } from "@/lib/rateLimitMiddleware";
+import { RATE_LIMITS } from "@/lib/rateLimiter";
 
-export async function POST(request) {
+async function verifyEmailHandler(request, { data }) {
   try {
-    const { token } = await request.json();
-
-    if (!token) {
-      return NextResponse.json({ error: "Token is required" }, { status: 400 });
-    }
+    const { token } = data;
 
     await connectDB();
 
@@ -31,6 +31,13 @@ export async function POST(request) {
 
     return NextResponse.json({ message: "Email verified successfully" }, { status: 200 });
   } catch (error) {
+    console.error("Verify email error:", error);
     return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
   }
 }
+
+// Apply rate limiting and validation
+export const POST = compose(
+  withRateLimit({ ...RATE_LIMITS.EMAIL_VERIFY, keyPrefix: "verify-email" }),
+  withValidation(verifyEmailSchema)
+)(verifyEmailHandler);

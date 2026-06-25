@@ -13,6 +13,7 @@ import {
 } from "react-icons/md";
 import Loader from "../components/loader/Loader";
 import { useAuth } from "../components/AuthContext";
+import { useQuiz } from "../components/QuizContext";
 import { generateCertificate } from "../components/generateCertificate";
 import quiz from "../components/quiz.json";
 
@@ -31,7 +32,8 @@ const courseColors = [
 ];
 
 export default function Dashboard() {
-  const { user, updateUser } = useAuth();
+  const { user } = useAuth();
+  const { startQuiz } = useQuiz();
   const router = useRouter();
   const [attempts, setAttempts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -102,7 +104,7 @@ export default function Dashboard() {
   ];
 
   function handleStartQuiz(key) {
-    updateUser({ ...user, course: key });
+    startQuiz(key);
     router.push("/questions");
   }
 

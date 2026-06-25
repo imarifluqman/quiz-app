@@ -3,18 +3,18 @@ import { signToken, setTokenCookie } from "@/lib/auth";
 import User from "@/models/User";
 import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
+import { loginSchema } from "@/lib/validations";
+import { compose, withValidation } from "@/lib/middleware";
+import { withRateLimit } from "@/lib/rateLimitMiddleware";
+import { RATE_LIMITS } from "@/lib/rateLimiter";
 
-export async function POST(request) {
+async function loginHandler(request, { data }) {
   try {
-    const { email, password } = await request.json();
-
-    if (!email || !password) {
-      return NextResponse.json({ error: "Email and password are required" }, { status: 400 });
-    }
+    const { email, password } = data;
 
     await connectDB();
 
-    const user = await User.findOne({ email: email.toLowerCase() });
+    const user = await User.findOne({ email });
     if (!user) {
       return NextResponse.json({ error: "Invalid email or password" }, { status: 401 });
     }
@@ -37,6 +37,13 @@ export async function POST(request) {
 
     return setTokenCookie(response, token);
   } catch (error) {
+    console.error("Login error:", error);
     return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
   }
 }
+
+// Apply rate limiting and validation
+export const POST = compose(
+  withRateLimit({ ...RATE_LIMITS.LOGIN, keyPrefix: "login" }),
+  withValidation(loginSchema)
+)(loginHandler);

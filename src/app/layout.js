@@ -3,6 +3,7 @@ import "./globals.css";
 import Nav from "./components/Nav";
 import Footer from "./components/footer";
 import { AuthProvider } from "./components/AuthContext";
+import { QuizProvider } from "./components/QuizContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -21,9 +22,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${inter.className} w-[100vw] overflow-x-hidden`}>
         <AuthProvider>
-          <Nav />
-          {children}
-          <Footer />
+          <QuizProvider>
+            <Nav />
+            {children}
+            <Footer />
+          </QuizProvider>
         </AuthProvider>
       </body>
     </html>

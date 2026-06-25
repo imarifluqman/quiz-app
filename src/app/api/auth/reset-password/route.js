@@ -3,18 +3,14 @@ import User from "@/models/User";
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
 import { NextResponse } from "next/server";
+import { resetPasswordSchema } from "@/lib/validations";
+import { compose, withValidation } from "@/lib/middleware";
+import { withRateLimit } from "@/lib/rateLimitMiddleware";
+import { RATE_LIMITS } from "@/lib/rateLimiter";
 
-export async function POST(request) {
+async function resetPasswordHandler(request, { data }) {
   try {
-    const { token, password } = await request.json();
-
-    if (!token || !password) {
-      return NextResponse.json({ error: "Token and password are required" }, { status: 400 });
-    }
-
-    if (password.length < 6) {
-      return NextResponse.json({ error: "Password must be at least 6 characters" }, { status: 400 });
-    }
+    const { token, password } = data;
 
     await connectDB();
 
@@ -36,6 +32,13 @@ export async function POST(request) {
 
     return NextResponse.json({ message: "Password reset successfully" }, { status: 200 });
   } catch (error) {
+    console.error("Reset password error:", error);
     return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
   }
 }
+
+// Apply rate limiting and validation
+export const POST = compose(
+  withRateLimit({ ...RATE_LIMITS.AUTH_STRICT, keyPrefix: "reset-password" }),
+  withValidation(resetPasswordSchema)
+)(resetPasswordHandler);

@@ -23,7 +23,8 @@
     "react-simple-image-slider": "^2.4.1",
     "sweetalert2": "^11.26.24",
     "swiper": "^11.1.12",
-    "yup": "^1.4.0"
+    "yup": "^1.4.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "eslint": "^8",

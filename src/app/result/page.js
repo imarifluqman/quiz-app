@@ -1,15 +1,31 @@
 "use client";
 import { IoMdDownload } from "react-icons/io";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import Loader from "../components/loader/Loader";
 import { useAuth } from "../components/AuthContext";
 import { generateCertificate } from "../components/generateCertificate";
 
 export default function Page() {
-  const { user, updateUser } = useAuth();
+  const { user } = useAuth();
   const router = useRouter();
+  const [result, setResult] = useState(null);
 
-  if (user === undefined) {
+  useEffect(() => {
+    // Load quiz result from localStorage
+    const savedResult = localStorage.getItem("lastQuizResult");
+    if (savedResult) {
+      try {
+        setResult(JSON.parse(savedResult));
+      } catch {
+        router.push("/dashboard");
+      }
+    } else {
+      router.push("/dashboard");
+    }
+  }, [router]);
+
+  if (user === undefined || !result) {
     return (
       <div className="w-full h-[80vh] flex justify-center items-center">
         <Loader />
@@ -22,7 +38,7 @@ export default function Page() {
     return null;
   }
 
-  const passed = user.score >= 50;
+  const passed = result.score >= 50;
 
   return (
     <div className="min-h-[80vh] bg-gradient-to-b from-slate-50 to-white flex items-center justify-center px-4 py-12">
@@ -51,7 +67,7 @@ export default function Page() {
             <div className={`w-16 h-16 rounded-full flex items-center justify-center text-xl font-bold shadow-lg ${
               passed ? "bg-blue-600 text-white" : "bg-orange-500 text-white"
             }`}>
-              {user.score}%
+              {result.score}%
             </div>
           </div>
 
@@ -59,8 +75,8 @@ export default function Page() {
           <div className="p-6 pt-5 space-y-4">
             {[
               { label: "Name", value: user.name },
-              { label: "Course", value: user.course?.toUpperCase() },
-              { label: "Score", value: `${user.score}%` },
+              { label: "Course", value: result.course?.toUpperCase() },
+              { label: "Score", value: `${result.score}%` },
             ].map((item) => (
               <div key={item.label} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0">
                 <span className="text-sm text-gray-500">{item.label}</span>
@@ -72,7 +88,7 @@ export default function Page() {
             <div className="flex flex-col gap-3 pt-2">
               <button
                 className="w-full py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
-                onClick={() => generateCertificate({ name: user.name, course: user.course, score: user.score })}
+                onClick={() => generateCertificate({ name: user.name, course: result.course, score: result.score })}
               >
                 <IoMdDownload className="text-lg" />
                 Download Certificate
@@ -80,8 +96,7 @@ export default function Page() {
               <button
                 className="w-full py-3 border-2 border-gray-200 text-gray-600 font-semibold rounded-xl hover:border-blue-300 hover:text-blue-600 hover:bg-blue-50/50 transition-all duration-200"
                 onClick={() => {
-                  const { course, score, ...rest } = user;
-                  updateUser(rest);
+                  localStorage.removeItem("lastQuizResult");
                   router.push("/dashboard");
                 }}
               >
